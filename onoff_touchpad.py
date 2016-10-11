@@ -29,10 +29,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import os
 
+# read TouchpadOff and save value
 r = os.popen('synclient |grep TouchpadOff').read().strip('\n').split('=')
 ri = int(r[1])
 
+# enable touchpad if off
 if ri == 0 :
     os.popen('synclient TouchpadOff=1')
+# disable it if on
 elif ri == 1:
     os.popen('synclient TouchpadOff=0')
