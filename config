@@ -71,7 +71,7 @@ bindsym $mod+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
- bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 #rofi here!
 bindsym Menu exec rofi -show run      \
@@ -104,7 +104,7 @@ bindsym $mod+Tab  exec rofi -show window \
 
 # change focus
 #bindsym $mod+j focus left
-#BINDSYM $MOD+K FOcus down
+#bindsym $MOD+K FOcus down
 #bindsym $mod+l focus up
 #bindsym $mod+semicolon focus right
 
@@ -159,7 +159,7 @@ exec --no-startup-id  setxkbmap -model pc105 -layout "us(alt-intl)"
 bindsym $mod+Control+l exec --no-startup-id i3lock -i /home/jmarcos/Pictures/Wallpapers/i3_ubuntu_locked.png -d -I15 -u -e
 
 # power
-set $mode_system State (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) shutdown
+set $mode_system State: [l] lock, [e] logout, [s] suspend, [h] hibernate, [r] reboot, [p] shutdown
 mode "$mode_system" {
  bindsym l exec --no-startup-id /home/$USER/.config/i3/i3exit 		lock, 		mode "default"
  bindsym e exec --no-startup-id /home/$USER/.config/i3/i3exit 		logout, 	mode "default"
@@ -171,7 +171,7 @@ mode "$mode_system" {
  bindsym Return mode "default"
  bindsym Escape mode "default"
 }
-#bindsym $mod+Pause mode "$mode_system"
+
 bindsym $mod+Shift+p mode "$mode_system"
 
 # Disable/Enable touchpad
@@ -296,7 +296,15 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (exit your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m ' Exit i3 now? ' -b 'Yes, exit i3' 'i3-msg exit'"
+set $exit_i3 EXIT now?: [e] - to exit, [ESC] - abort
+mode "$exit_i3" {
+    bindsym e i3-msg exit
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+e mode "$exit_i3"
+
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3 now? ' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
