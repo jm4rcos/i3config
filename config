@@ -361,7 +361,9 @@ for_window [class="Pidgin"  window_role="conversation"]          floating enable
 for_window [class="File-roller"]                                 floating enable
 for_window [class="Thunar"]                                      floating enable
 for_window [class="VirtualBox"]                                  floating enable
-
+for_window [class="Spotify"]                                     floating enable
+for_window [class="java-lang-Thread"]                            floating enable resize set 1000 900
+for_window [class="Atasjni"]                                     floating enable resize set 1616 980
 
 # Border style for new windows
 new_window pixel
@@ -437,10 +439,11 @@ exec compton
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nm-applet
 exec --no-startup-id whatsie
+exec --no-startup-id Spotify
 exec --no-startup-id shutter --min_at_startup
 exec --no-startup-id pac
 exec --no-startup-id i3-msg 'workspace 1:Terminals; exec skype'
 exec --no-startup-id i3-msg 'workspace 1:Terminals; exec keepassx'
 exec --no-startup-id i3-msg 'workspace F9:Chat; exec urxvt -e weechat --no-connect'
-exec --no-startup-id i3-msg 'workspace F10:Rss; exec liferea'
+#exec --no-startup-id i3-msg 'workspace F10:Rss; exec liferea'
 #
