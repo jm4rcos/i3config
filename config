@@ -198,10 +198,9 @@ bindsym XF86AudioPause 		    exec playerctl pause
 bindsym XF86AudioNext 	 	    exec playerctl next
 bindsym XF86AudioPrev 		    exec playerctl previous
 
-# disable mouse wraping
+# disable mouse warping
 mouse_warping none
 
-force_focus_wrapping no
 focus_follows_mouse yes
 
 # workspaces definition
