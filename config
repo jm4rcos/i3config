@@ -65,8 +65,12 @@ bindsym $mod+Return exec urxvt
 #bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
+#start gedit
+bindsym $mod+Shift+g exec gedit
+
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
+
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -139,6 +143,9 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+
+# enabling workspace back and forth
+workspace_auto_back_and_forth yes
 
 # toggle tiling / floating
 bindsym $mod+Control+space floating toggle
@@ -365,25 +372,21 @@ for_window [class="java-lang-Thread"]                            floating enable
 for_window [class="Atasjni"]                                     floating enable resize set 1616 980
 
 # Border style for new windows
-new_window pixel
-new_window normal 0
+new_window      normal 0
+new_float       normal 0
+
+hide_edge_borders both
 
 # Widow Colors
-#                        border         background      text            indicator
+#                       border         background      text            indicator
 
-# client.focused          $base01        $base01         $base11         $base0F
-# client.focused_inactive $base07        $base07         $base03         $base0F
-# client.unfocused        $base02        $base02         $base03         $base0F
-# client.urgent           $base02        $base02         $base03         $base0F
-
- client.focused          $base12        $base09         $base10         $base0F
- client.focused_inactive $base07        $base13         $base06         $base0F
- client.unfocused        $base02        $base02         $base03         $base0F
- client.urgent           $base02        $base02         $base03         $base0F
+client.focused          $base09        $base09         $base10         $base0F
+client.focused_inactive $base13        $base13         $base06         $base0F
+client.unfocused        $base02        $base02         $base10         $base0F
+client.urgent           $base02        $base02         $base03         $base0F
 
 # Start i3blocks to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# Bar
 
 #bar {
 #  font pango: System San Francisco Display, FontAwesome 10.5
@@ -406,14 +409,11 @@ bar {
   output LVDS-1
   separator_symbol "|"
   colors {
-       separator        $base10
+       #separator        $base10
        background       $base11
        statusline       #f15d22
-#        Type             border        background      font
-#       focused_workspace  $base06       $base01         $base07
-#       active_workspace   $base01       $base02         $base03
-#       inactive_workspace $base01       $base01         $base03
-#       urgent_workspace   $base06       $base09         $base10
+
+#      Type               border        background      font
 
        focused_workspace  $base0C       $base09         $base10
        active_workspace   $base01       $base11         $base0C
@@ -430,8 +430,6 @@ exec feh --bg-scale ~/Pictures/Wallpapers/linux02.jpg
 exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id pactl set-sink-volume 1 -0.022
 exec xrandr --output LVDS-1 --primary   --mode 1920x1080 --pos 0x0 --rotate normal --brightness 1
-#exec xrandr --output VGA-1  --noprimary --mode 1024x768  --pos 1920x0 --rotate normal --brightness 1.2
-#exec xrandr --output HDMI-1 --noprimary --mode 1920x1080 --pos 1920x0 --rotate normal --brightness 1
 exec xrandr --output VGA-1  --noprimary --auto
 exec xrandr --output HDMI-1 --noprimary --auto
 exec compton
