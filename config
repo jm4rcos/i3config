@@ -441,11 +441,11 @@ exec compton
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nm-applet
 exec --no-startup-id whatsie
-exec --no-startup-id i3-msg 'workspace 9:Chat; exec spotify'
+exec --no-startup-id i3-msg 'workspace 9:Media; exec spotify'
 exec --no-startup-id shutter --min_at_startup
 exec --no-startup-id pac
 exec --no-startup-id i3-msg 'workspace 1:Terminals; exec skype'
 exec --no-startup-id i3-msg 'workspace 1:Terminals; exec keepassx'
-#exec --no-startup-id i3-msg 'workspace 9:Chat; exec urxvt -e weechat --no-connect'
+#exec --no-startup-id i3-msg 'workspace 9:Media; exec urxvt -e weechat --no-connect'
 #exec --no-startup-id i3-msg 'workspace F10:Rss; exec liferea'
 #
