@@ -14,6 +14,7 @@ set $mod Mod4
 bindsym Control+q exec ls
 
 # color base
+#
 set $base00 #101218
 set $base01 #dcdcdc
 set $base02 #3e414c
