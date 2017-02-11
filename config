@@ -205,9 +205,11 @@ bindsym XF86AudioPause 		    exec playerctl pause
 bindsym XF86AudioNext 	 	    exec playerctl next
 bindsym XF86AudioPrev 		    exec playerctl previous
 
+# Enable second monitor on HDMI output
+bindsym XF86Display             exec xrandr --output HDMI-1 --noprimary --auto --pos 1920x0
+
 # disable mouse warping
 mouse_warping none
-
 focus_follows_mouse yes
 
 # workspaces definition
@@ -234,6 +236,7 @@ set $ws20 "F11: "
 set $ws21 "F12: "
 
 # Assign applications to specific workspaces
+# use xprop to find out what the class is
 assign [class="Firefox"]                $ws2
 assign [class="Atom"]                   $ws5
 assign [class="Audacious"]              $ws9
@@ -242,6 +245,7 @@ assign [class="Thunderbird"]            $ws3
 assign [class="transmission"]           $ws9
 assign [class="Vmware"]                 $ws4
 assign [class="Whatsie"]                $ws9
+assign [class="spotify" ]               $ws9  
 #assign [class="Liferea"]                $ws19
 assign [class="Pac"]                    $ws1
 
@@ -293,7 +297,7 @@ bindsym $mod+Shift+F12 move container to workspace $ws21
 
 # workspace output
 #workspace F11 output VGA-1
-workspace F12 output HDMI-1
+workspace F12 output HDMI-0
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -333,6 +337,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Floating  Windows
+# use xprop to find out what the class is
 for_window [class="Lxappearance"]                                floating enable
 for_window [class="Nautilus"]                                    floating enable
 for_window [class="Gedit"]                                       floating enable
@@ -367,7 +372,7 @@ for_window [class="Pidgin"  window_role="conversation"]          floating enable
 for_window [class="File-roller"]                                 floating enable
 for_window [class="Thunar"]                                      floating enable
 for_window [class="VirtualBox"]                                  floating enable
-for_window [class="Spotify"]                                     floating enable
+for_window [class="Spotify"]                                     floating enable resize set 1500 700
 for_window [class="java-lang-Thread"]                            floating enable resize set 1000 900
 for_window [class="Atasjni"]                                     floating enable resize set 1616 980
 
@@ -430,17 +435,17 @@ exec feh --bg-scale ~/Pictures/Wallpapers/linux02.jpg
 exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id pactl set-sink-volume 1 -0.022
 exec xrandr --output LVDS-1 --primary   --mode 1920x1080 --pos 0x0 --rotate normal --brightness 1
-exec xrandr --output VGA-1  --noprimary --auto
-exec xrandr --output HDMI-1 --noprimary --auto
+#exec xrandr --output VGA-1  --noprimary --auto
+#exec xrandr --output HDMI-1 --noprimary --auto --pos 1920x0
 exec compton
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nm-applet
 exec --no-startup-id whatsie
-exec --no-startup-id Spotify
+exec --no-startup-id i3-msg 'workspace 9:Chat; exec spotify'
 exec --no-startup-id shutter --min_at_startup
 exec --no-startup-id pac
 exec --no-startup-id i3-msg 'workspace 1:Terminals; exec skype'
 exec --no-startup-id i3-msg 'workspace 1:Terminals; exec keepassx'
-exec --no-startup-id i3-msg 'workspace F9:Chat; exec urxvt -e weechat --no-connect'
+#exec --no-startup-id i3-msg 'workspace 9:Chat; exec urxvt -e weechat --no-connect'
 #exec --no-startup-id i3-msg 'workspace F10:Rss; exec liferea'
 #
