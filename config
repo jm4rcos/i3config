@@ -206,7 +206,7 @@ bindsym XF86AudioNext 	 	    exec playerctl next
 bindsym XF86AudioPrev 		    exec playerctl previous
 
 # Enable second monitor on HDMI output
-bindsym XF86Display             exec xrandr --output HDMI-1 --noprimary --auto --pos 1920x0
+bindsym XF86Display             exec xrandr --output HDMI-1 --noprimary --auto --pos 1920x0 && feh --bg-scale ~/Pictures/Wallpapers/linux02.jpg
 
 # disable mouse warping
 mouse_warping none
@@ -245,7 +245,7 @@ assign [class="Thunderbird"]            $ws3
 assign [class="transmission"]           $ws9
 assign [class="Vmware"]                 $ws4
 assign [class="Whatsie"]                $ws9
-assign [class="spotify" ]               $ws9  
+assign [class="spotify" ]               $ws9
 #assign [class="Liferea"]                $ws19
 assign [class="Pac"]                    $ws1
 
@@ -446,6 +446,6 @@ exec --no-startup-id shutter --min_at_startup
 exec --no-startup-id pac
 exec --no-startup-id i3-msg 'workspace 1:Terminals; exec skype'
 exec --no-startup-id i3-msg 'workspace 1:Terminals; exec keepassx'
-#exec --no-startup-id i3-msg 'workspace 9:Media; exec urxvt -e weechat --no-connect'
+exec --no-startup-id i3-msg 'workspace F9:Chat; exec urxvt -e weechat --no-connect'
 #exec --no-startup-id i3-msg 'workspace F10:Rss; exec liferea'
 #
