@@ -11,6 +11,7 @@
 
 set $mod Mod4
 
+# leave this line here! this is to unbind default action of ctrl+q
 bindsym Control+q exec ls
 
 # color base
@@ -77,7 +78,7 @@ bindsym $mod+Shift+g exec gedit
 # installed.
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-#rofi here!
+# rofi here!
 bindsym Menu exec rofi -show run      \
         -lines 5                        \
         -colunms        2               \
@@ -173,7 +174,7 @@ mode "$mode_system" {
  bindsym s exec --no-startup-id /home/$USER/.config/i3/i3exit 		suspend, 	mode "default"
  bindsym h exec --no-startup-id /home/$USER/.config/i3/i3exit 		hibernate, 	mode "default"
  bindsym r exec --no-startup-id /home/$USER/.config/i3/i3exit 		reboot, 	mode "default"
- bindsym p exec --no-startup-id /home/$USER/.config/i3/i3exit 	    shutdown, 	mode "default"
+ bindsym p exec --no-startup-id /home/$USER/.config/i3/i3exit 	        shutdown, 	mode "default"
  # back to normal: Enter or Escape
  bindsym Return mode "default"
  bindsym Escape mode "default"
@@ -297,7 +298,27 @@ bindsym $mod+Shift+F12 move container to workspace $ws21
 
 # workspace output
 #workspace F11 output VGA-1
-workspace F12 output HDMI-0
+workspace $ws1 output LVDS-1
+workspace $ws2 output LVDS-1
+workspace $ws3 output LVDS-1
+workspace $ws4 output LVDS-1
+workspace $ws5 output LVDS-1
+workspace $ws6 output LVDS-1
+workspace $ws7 output LVDS-1
+workspace $ws8 output LVDS-1
+workspace $ws9 output LVDS-1
+workspace $ws10 output LVDS-1
+workspace $ws11 output LVDS-1
+workspace $ws12 output LVDS-1
+workspace $ws13 output LVDS-1
+workspace $ws14 output LVDS-1
+workspace $ws15 output LVDS-1
+workspace $ws16 output LVDS-1
+workspace $ws17 output LVDS-1
+workspace $ws18 output LVDS-1
+workspace $ws19 output LVDS-1
+workspace $ws20 output LVDS-1
+workspace $ws21 output LVDS-1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -317,7 +338,7 @@ bindsym $mod+Shift+e mode "$exit_i3"
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3 now? ' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
-mode "resize" {
+mode "*** RESIZE ***" {
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
@@ -334,7 +355,7 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "*** RESIZE ***"
 
 # Floating  Windows
 # use xprop to find out what the class is
@@ -434,18 +455,18 @@ exec --no-startup-id /usr/bin/numlockx on
 exec feh --bg-scale ~/Pictures/Wallpapers/linux02.jpg
 exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id pactl set-sink-volume 1 -0.022
-exec xrandr --output LVDS-1 --primary   --mode 1920x1080 --pos 0x0 --rotate normal --brightness 1
+exec xrandr --output LVDS-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --brightness 1
 #exec xrandr --output VGA-1  --noprimary --auto
 #exec xrandr --output HDMI-1 --noprimary --auto --pos 1920x0
 exec compton
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nm-applet
 exec --no-startup-id whatsie
-exec --no-startup-id i3-msg 'workspace 9:Media; exec spotify'
 exec --no-startup-id shutter --min_at_startup
 exec --no-startup-id pac
 exec --no-startup-id i3-msg 'workspace 1:Terminals; exec skype'
 exec --no-startup-id i3-msg 'workspace 1:Terminals; exec keepassx'
+exec --no-startup-id i3-msg 'workspace 9:Media; exec spotify'
 exec --no-startup-id i3-msg 'workspace F9:Chat; exec urxvt -e weechat --no-connect'
 #exec --no-startup-id i3-msg 'workspace F10:Rss; exec liferea'
 #
