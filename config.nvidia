@@ -31,7 +31,7 @@ set $base0C #5c5c5c
 set $base0D #97bbf7
 set $base0E #c0b7f9
 set $base0F #e6e7ec
-set $base10 #dddfe2
+set $base10 #ffffff
 set $base11 #000000
 set $base12 #1f222d
 set $base13 #202020
@@ -174,7 +174,7 @@ mode "$mode_system" {
  bindsym s exec --no-startup-id /home/$USER/.config/i3/i3exit 		suspend, 	mode "default"
  bindsym h exec --no-startup-id /home/$USER/.config/i3/i3exit 		hibernate, 	mode "default"
  bindsym r exec --no-startup-id /home/$USER/.config/i3/i3exit 		reboot, 	mode "default"
- bindsym p exec --no-startup-id /home/$USER/.config/i3/i3exit 	    shutdown, 	mode "default"
+ bindsym p exec --no-startup-id /home/$USER/.config/i3/i3exit 	        shutdown, 	mode "default"
  # back to normal: Enter or Escape
  bindsym Return mode "default"
  bindsym Escape mode "default"
@@ -207,7 +207,7 @@ bindsym XF86AudioNext 	 	    exec playerctl next
 bindsym XF86AudioPrev 		    exec playerctl previous
 
 # Enable second monitor on HDMI output
-bindsym XF86Display             exec xrandr --output HDMI-0 --noprimary --auto --pos 1920x0 && feh --bg-scale ~/Pictures/Wallpapers/linux_i3.png
+bindsym XF86Display             exec xrandr --output HDMI-0 --noprimary --auto --pos 1920x0 && feh --bg-scale ~/Pictures/Wallpapers/linux02.jpg
 
 # disable mouse warping
 mouse_warping none
@@ -396,7 +396,6 @@ for_window [class="VirtualBox"]                                  floating enable
 for_window [class="Spotify"]                                     floating enable resize set 1500 700
 for_window [class="java-lang-Thread"]                            floating enable resize set 1000 900
 for_window [class="Atasjni"]                                     floating enable resize set 1616 980
-for_window [class="Kazam"]                                       floating enable
 
 # Border style for new windows
 new_window      normal 0
@@ -442,32 +441,32 @@ bar {
 
 #      Type               border        background      font
 
-       focused_workspace  $base0C       $base09         #dddfe2
-       active_workspace   $base01       $base11         #dddfe2
-       inactive_workspace $base11       $base11         #dddfe2
-       urgent_workspace   $base0C       $base14         #dddfe2
+       focused_workspace  $base0C       $base09         $base10
+       active_workspace   $base01       $base11         $base0C
+       inactive_workspace $base11       $base11         $base0C
+       urgent_workspace   $base0C       $base14         $base10
 
 
     }
 }
 
 # exec
-exec xrandr --output LVDS-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --brightness 1
-#exec xrandr --output VGA-0  --noprimary --auto
-#exec xrandr --output HDMI-0 --noprimary --auto --pos 1920x
 exec --no-startup-id /usr/bin/numlockx on
-exec feh --bg-scale ~/Pictures/Wallpapers/linux_i3.png
+exec feh --bg-scale ~/Pictures/Wallpapers/linux02.jpg
 exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id pactl set-sink-volume 1 -0.022
+exec xrandr --output LVDS-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --brightness 1
+#exec xrandr --output VGA-0  --noprimary --auto
+#exec xrandr --output HDMI-0 --noprimary --auto --pos 1920x0
 exec compton
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nm-applet
+exec --no-startup-id whatsie
 exec --no-startup-id shutter --min_at_startup
 exec --no-startup-id pac
-exec --no-startup-id i3-msg 'workspace F9:Chat; exec urxvt -e weechat --no-connect; workspace 1:Terminals'
-exec --no-startup-id i3-msg 'exec skype; workspace 1:Terminals'
-exec --no-startup-id i3-msg 'exec keepassx; workspace 1:Terminals'
-#exec --no-startup-id whatsie
-#exec --no-startup-id i3-msg 'workspace 9:Media; exec spotify'
+exec --no-startup-id i3-msg 'workspace 1:Terminals; exec skype'
+exec --no-startup-id i3-msg 'workspace 1:Terminals; exec keepassx'
+exec --no-startup-id i3-msg 'workspace 9:Media; exec spotify'
+exec --no-startup-id i3-msg 'workspace F9:Chat; exec urxvt -e weechat --no-connect'
 #exec --no-startup-id i3-msg 'workspace F10:Rss; exec liferea'
 #
