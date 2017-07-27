@@ -94,18 +94,18 @@ bindsym Menu exec rofi -show run      \
         -hlfg "$base10"                 \
         -font "Ubuntu 26"
 
-bindsym $mod+Tab  exec rofi -show window \
-        -eh 2                           \
-        -padding 150                     \
-        -fullscreen                     \
-        -opacity "85"                   \
-        -bw 0                           \
-        -bc "$base00"                   \
-        -bg "$base00"                   \
-        -fg "$base0E"                   \
-        -hlbg "$base06"                 \
-        -hlfg "$base10"                 \
-        -font "Ubuntu 26"
+#bindsym $mod+Tab  exec rofi -show window \
+#        -eh 2                           \
+#        -padding 150                     \
+#        -fullscreen                     \
+#        -opacity "85"                   \
+#        -bw 0                           \
+#        -bc "$base00"                   \
+#        -bg "$base00"                   \
+#        -fg "$base0E"                   \
+#        -hlbg "$base06"                 \
+#        -hlfg "$base10"                 \
+#        -font "Ubuntu 26"
 
 # change focus
 #bindsym $mod+j focus left
@@ -412,6 +412,12 @@ client.focused_inactive $base13        $base13         $base06         $base0F
 client.unfocused        $base02        $base02         $base10         $base0F
 client.urgent           $base02        $base02         $base03         $base0F
 
+
+# Cycle through active workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+
 # Start i3blocks to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
@@ -429,6 +435,7 @@ client.urgent           $base02        $base02         $base03         $base0F
 #}
 
 bar {
+
   id bar-0
   font pango: System San Francisco Display, FontAwesome 10.5
   status_command i3blocks
@@ -436,18 +443,18 @@ bar {
   output LVDS-0
   separator_symbol "|"
   colors {
-       #separator        $base10
-       background       $base11
-       statusline       #f15d22
 
-#      Type               border        background      font
+  set $base_nc #f15d22
+  #separator        $base10
+  background       $base11
+  statusline       #f15d22
 
-       focused_workspace  $base0C       $base09         #dddfe2
-       active_workspace   $base01       $base11         #dddfe2
-       inactive_workspace $base11       $base11         #dddfe2
-       urgent_workspace   $base0C       $base14         #dddfe2
+#  Type               border        background      font
 
-
+   focused_workspace  $base0C       $base09         #dddfe2
+   active_workspace   $base01       $base11         #dddfe2
+   inactive_workspace $base11       $base11         #dddfe2
+   urgent_workspace   $base0C       $base14         #dddfe2
     }
 }
 
