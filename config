@@ -68,37 +68,44 @@ bindsym $mod+Return exec urxvt
 #bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
-#start gedit
-bindsym $mod+Shift+g exec gedit
+#start leafpad
+bindsym $mod+Shift+l exec leafpad
+
+# start keepassxc
+bindsym $mod+Shift+k exec keepassxc
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 
-
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+#bindsym Menu exec --no-startup-id i3-dmenu-desktop
 
-# rofi here!
-bindsym Menu exec rofi -show run      \
-        -lines 5                        \
-        -colunms        2               \
-        -eh 2                           \
-        -padding 150                    \
-        -fullscreen                     \
-        -opacity "85"                   \
-        -bw 0                           \
-        -bc "$base00"                   \
-        -bg "$base00"                   \
-        -fg "$base0E"                   \
-        -hlbg "$base00"                 \
-        -hlfg "$base10"                 \
-        -font "Ubuntu 26"
+# rofi
+# check configuration parameters in file .Xresources
+#
+bindsym Menu exec rofi -show run
 
+#bindsym Menu exec rofi -show run      \
+#        -lines 5                        \
+#        -colunms        2               \
+#        -eh 2                           \
+#        -padding 150                    \
+#        -fullscreen                     \
+#        -opacity "85"                   \
+#        -bw 0                           \
+#        -bc "$base00"                   \
+#        -bg "$base00"                   \
+#        -fg "$base0E"                   \
+#        -hlbg "$base00"                 \
+#        -hlfg "$base10"                 \
+#        -font "Ubuntu 26"
+#
 #bindsym $mod+Tab  exec rofi -show window \
 #        -eh 2                           \
-#        -padding 150                     \
+#        -padding 150                    \
 #        -fullscreen                     \
 #        -opacity "85"                   \
 #        -bw 0                           \
@@ -109,23 +116,11 @@ bindsym Menu exec rofi -show run      \
 #        -hlfg "$base10"                 \
 #        -font "Ubuntu 26"
 
-# change focus
-#bindsym $mod+j focus left
-#bindsym $MOD+K FOcus down
-#bindsym $mod+l focus up
-#bindsym $mod+semicolon focus right
-
 # change focus using the cursor keys:
 bindsym $mod+Left 	focus left
 bindsym $mod+Down 	focus down
 bindsym $mod+Up 	focus up
 bindsym $mod+Right 	focus right
-
-# move focused window
-#bindsym $mod+Shift+j move left
-#bindsym $mod+Shift+k move down
-#bindsym $mod+Shift+l move up
-#bindsym $mod+Shift+semicolon move right
 
 # move focused window using the cursor keys:
 bindsym $mod+Shift+Left 	move left
@@ -150,8 +145,10 @@ bindsym $mod+e layout toggle split
 # enabling workspace back and forth
 workspace_auto_back_and_forth yes
 
-# toggle tiling / floating
-bindsym $mod+Control+space floating toggle
+# toggle tiling / floating modes
+#bindsym $mod+Control+space 	floating toggle  border normal 0
+bindsym $mod+Control+f			floating enable  border normal 0
+bindsym $mod+Control+t			floating disable border none
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -166,17 +163,17 @@ bindsym $mod+a focus parent
 exec --no-startup-id  setxkbmap -model pc105 -layout "us(alt-intl)"
 
 # lock screen
-bindsym $mod+Control+l exec --no-startup-id i3lock -i /home/jmarcos/Pictures/Wallpapers/i3_ubuntu_locked.png -d -I15 -u -e
+bindsym $mod+Control+l exec --no-startup-id i3lock -i ~/Pictures/Wallpapers/i3_ubuntu_locked.png -d -I15 -u -e
 
 # power
 set $mode_system State: [l] lock, [e] logout, [s] suspend, [h] hibernate, [r] reboot, [p] shutdown
 mode "$mode_system" {
- bindsym l exec --no-startup-id /home/$USER/.config/i3/i3exit 		lock, 		mode "default"
- bindsym e exec --no-startup-id /home/$USER/.config/i3/i3exit 		logout, 	mode "default"
- bindsym s exec --no-startup-id /home/$USER/.config/i3/i3exit 		suspend, 	mode "default"
- bindsym h exec --no-startup-id /home/$USER/.config/i3/i3exit 		hibernate, 	mode "default"
- bindsym r exec --no-startup-id /home/$USER/.config/i3/i3exit 		reboot, 	mode "default"
- bindsym p exec --no-startup-id /home/$USER/.config/i3/i3exit 	    shutdown, 	mode "default"
+ bindsym l exec --no-startup-id ~/github/i3scripts/i3_exit.sh 		lock, 		mode "default"
+ bindsym e exec --no-startup-id ~/github/i3scripts/i3_exit.sh 		logout, 	mode "default"
+ bindsym s exec --no-startup-id ~/github/i3scripts/i3_exit.sh 		suspend, 	mode "default"
+ bindsym h exec --no-startup-id ~/github/i3scripts/i3_exit.sh 		hibernate, 	mode "default"
+ bindsym r exec --no-startup-id ~/github/i3scripts/i3_exit.sh 		reboot, 	mode "default"
+ bindsym p exec --no-startup-id ~/github/i3scripts/i3_exit.sh 	    shutdown, 	mode "default"
  # back to normal: Enter or Escape
  bindsym Return mode "default"
  bindsym Escape mode "default"
@@ -185,7 +182,7 @@ mode "$mode_system" {
 bindsym $mod+Shift+p mode "$mode_system"
 
 # Disable/Enable touchpad
-bindsym XF86TouchpadToggle 	    exec --no-startup-id ~/.config/i3/onoff_touchpad.py tpggle
+bindsym XF86TouchpadToggle 	    exec --no-startup-id ~/github/i3scripts/i3_onoff_touchpad.py
 
 # Print Screen
 bindsym $mod+Print              exec --no-startup-id ~/github/i3scripts/i3_printScreen.py
@@ -216,15 +213,16 @@ mouse_warping none
 focus_follows_mouse yes
 
 # workspaces definition
-set $ws1 "1:Terminals"
-set $ws2 "2:Firefox"
-set $ws3 "3:Thunderbird"
-set $ws4 "4:VMware"
-set $ws5 "5:Atom"
+#
+set $ws1 "1:  "
+set $ws2 "2:  "
+set $ws3 "3:  "
+set $ws4 "4:  "
+set $ws5 "5:  "
 set $ws6 "6: "
 set $ws7 "7: "
 set $ws8 "8: "
-set $ws9 "9:Media"
+set $ws9 "9:  "
 set $ws10 "F1: "
 set $ws11 "F2: "
 set $ws12 "F3: "
@@ -233,26 +231,27 @@ set $ws14 "F5; "
 set $ws15 "F6: "
 set $ws16 "F7: "
 set $ws17 "F8: "
-set $ws18 "F9:Chat"
-set $ws19 "F10:Rss"
+set $ws18 "F9:  "
+set $ws19 "F10:  "
 set $ws20 "F11: "
 set $ws21 "F12: "
 
 # Assign applications to specific workspaces
 # use xprop to find out what the class is
+#
+assign [class="Pac"]                    $ws1
 assign [class="Firefox"]                $ws2
+assign [class="Thunderbird"]            $ws3
+assign [class="Vmware"]                 $ws4
 assign [class="Atom"]                   $ws5
 assign [class="Audacious"]              $ws9
 assign [class="Totem"]                  $ws9
-assign [class="Thunderbird"]            $ws3
 assign [class="transmission"]           $ws9
-assign [class="Vmware"]                 $ws4
 assign [class="Whatsie"]                $ws9
 assign [class="spotify" ]               $ws9
-#assign [class="Liferea"]                $ws19
-assign [class="Pac"]                    $ws1
 
-# switch to workspace
+# binding keys to workspace switching
+#
 bindsym $mod+1      workspace $ws1
 bindsym $mod+2      workspace $ws2
 bindsym $mod+3      workspace $ws3
@@ -276,6 +275,7 @@ bindsym $mod+F11    workspace $ws20
 bindsym $mod+F12    workspace $ws21
 
 # move focused container to workspace
+#
 bindsym $mod+Shift+1   move container to workspace $ws1
 bindsym $mod+Shift+2   move container to workspace $ws2
 bindsym $mod+Shift+3   move container to workspace $ws3
@@ -299,16 +299,16 @@ bindsym $mod+Shift+F11 move container to workspace $ws20
 bindsym $mod+Shift+F12 move container to workspace $ws21
 
 # workspace output
-#workspace F11 output VGA-0
-workspace $ws1 output LVDS-0
-workspace $ws2 output LVDS-0
-workspace $ws3 output LVDS-0
-workspace $ws4 output LVDS-0
-workspace $ws5 output LVDS-0
-workspace $ws6 output LVDS-0
-workspace $ws7 output LVDS-0
-workspace $ws8 output LVDS-0
-workspace $ws9 output LVDS-0
+#
+workspace $ws1  output LVDS-0
+workspace $ws2  output LVDS-0
+workspace $ws3  output LVDS-0
+workspace $ws4  output LVDS-0
+workspace $ws5  output LVDS-0
+workspace $ws6  output LVDS-0
+workspace $ws7  output LVDS-0
+workspace $ws8  output LVDS-0
+workspace $ws9  output LVDS-0
 workspace $ws10 output LVDS-0
 workspace $ws11 output LVDS-0
 workspace $ws12 output LVDS-0
@@ -328,26 +328,10 @@ bindsym $mod+Shift+c reload
 # restart i3 in place (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# exit i3 (exit your X session)
-#set $exit_i3 EXIT now?: [e] - to exit, [ESC] - abort
-#mode $exit_i3 {
-#    bindsym e i3-msg "exit"
-#    bindsym Escape mode "default"
-#}
-
-#bindsym $mod+Shift+e mode $exit_i3
-
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3 now? ' -b 'Yes, exit i3' 'i3-msg exit'"
-
-# resize window (you can also use the mouse for that)
-mode "*** RESIZE ***" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        # Bindings for the arrow keys
+# resize stacked windows
+# user mouse to resize floting windows
+#
+mode " RESIZE " {
         bindsym Left  resize shrink width  1 px or 1 ppt
         bindsym Down  resize grow   height 1 px or 1 ppt
         bindsym Up    resize shrink height 1 px or 1 ppt
@@ -357,27 +341,29 @@ mode "*** RESIZE ***" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-bindsym $mod+r mode "*** RESIZE ***"
+bindsym $mod+r mode " RESIZE "
 
-# Floating  Windows
+# set some apps to use floating  windows
 # use xprop to find out what the class is
-for_window [class="Lxappearance"]                                floating enable
-for_window [class="Nautilus"]                                    floating enable
-for_window [class="Gedit"]                                       floating enable
-for_window [class="Shutter"]                                     floating enable
-for_window [class="Synaptic"]                                    floating enable
-for_window [class="Skype"]                                       floating enable
+#
+for_window [class="Lxappearance"]                                floating enable border normal 0
+for_window [class="Nautilus"]                                    floating enable border normal 0
+for_window [class="Gedit"]                                       floating enable border normal 0
+for_window [class="Shutter"]                                     floating enable border normal 0
+for_window [class="Leafpad"]                                     floating enable border normal 0
+for_window [class="Synaptic"]                                    floating enable border normal 0
+for_window [class="skypeforlinux"]                               floating enable resize set 550 1060, move absolute position 1370 px 20 px
 for_window [class="Audacious"]                                   floating enable
 for_window [class="Eog"]		                                 floating enable
 for_window [class="Totem"]		                                 floating enable
-for_window [class="Wireshark"]		                             floating enable
+for_window [class="Wireshark"]		                             floating enable border normal 0
 for_window [class="Mainwindow.py"]                               floating enable
 for_window [class="Dconf-editor"]                                floating enable
 for_window [class="Gconf-editor"]                                floating enable
-for_window [window_role="Msgcompose"]                            floating enable
-for_window [class="transmission"]                                floating enable
+for_window [window_role="Msgcompose"]                            floating enable border normal 0
+for_window [class="transmission"]                                floating enable border normal 0
 for_window [class="TeamViewer"]                                  floating enable
-for_window [class="Keepassx"]                                    floating enable
+for_window [class="keepassxc"]                                   floating enable resize set 550 1060, move absolute position 1370 px 20 px
 for_window [class="vlc"]                                         floating enable
 for_window [class="Arandr" instance="arandr"]                    floating enable
 for_window [class="Firefox"  title="SSL Network Extender - Mozilla Firefox"]  floating enable
@@ -394,19 +380,20 @@ for_window [class="Pidgin"  window_role="buddy_list"]            floating enable
 for_window [class="Pidgin"  window_role="conversation"]          floating enable
 for_window [class="File-roller"]                                 floating enable
 for_window [class="Thunar"]                                      floating enable
-for_window [class="VirtualBox"]                                  floating enable
+for_window [class="VirtualBox"]                                  floating enable border normal 0
 for_window [class="Spotify"]                                     floating enable resize set 1500 700
 for_window [class="java-lang-Thread"]                            floating enable resize set 1000 900
 for_window [class="Atasjni"]                                     floating enable resize set 1616 980
 for_window [class="Kazam"]                                       floating enable
 
 # Border style for new windows
-new_window      normal 0
+#new_window      normal 0
+new_window		pixel 0
 new_float       normal 0
 
 hide_edge_borders both
 
-# Widow Colors
+# window colors
 #                       border         background      text            indicator
 
 client.focused          $base09        $base09         $base10         $base0F
@@ -445,39 +432,43 @@ bar {
   position top
   output LVDS-0
   separator_symbol "|"
+
+  # bar colors
   colors {
 
-  set $base_nc #f15d22
   #separator        $base10
   background       $base11
   statusline       #f15d22
 
-#  Type               border        background      font
+  #Type               border        background     font
 
-   focused_workspace  $base0C       $base09         #dddfe2
-   active_workspace   $base01       $base11         #dddfe2
-   inactive_workspace $base11       $base11         #dddfe2
-   urgent_workspace   $base0C       $base14         #dddfe2
+  focused_workspace  $base0C       $base09         #b1b1b7
+  active_workspace   $base01       $base11         #4f7288
+  inactive_workspace $base11       $base11         #4f7288
+  urgent_workspace   $base0C       $base14         #b1b1b7
     }
 }
 
-# exec
+# exec some apps at startup
+#
 exec xrandr --output LVDS-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --brightness 1
 #exec xrandr --output VGA-0  --noprimary --auto
 #exec xrandr --output HDMI-0 --noprimary --auto --pos 1920x
+exec compton
 exec --no-startup-id /usr/bin/numlockx on
 exec feh --bg-scale ~/Pictures/Wallpapers/linux_i3.png
 exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id pactl set-sink-volume 1 -0.022
-exec compton
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nm-applet
 exec --no-startup-id shutter --min_at_startup
+exec --no-startup-id i3-msg 'exec keepassxc'
 exec --no-startup-id pac
-exec --no-startup-id i3-msg 'workspace F9:Chat; exec urxvt -e weechat --no-connect; workspace 1:Terminals'
-exec --no-startup-id i3-msg 'exec skype; workspace 1:Terminals'
-exec --no-startup-id i3-msg 'exec keepassx; workspace 1:Terminals'
+exec --no-startup-id i3-msg 'exec skypeforlinux'
+exec --no-startup-id i3-msg 'workspace F9:  ; exec urxvt -e weechat --no-connect'
 #exec --no-startup-id whatsie
-#exec --no-startup-id i3-msg 'workspace 9:Media; exec spotify'
-#exec --no-startup-id i3-msg 'workspace F10:Rss; exec liferea'
+#exec --no-startup-id i3-msg 'workspace 9; exec spotify'
+#exec --no-startup-id i3-msg 'workspace F10; exec liferea'
 #
+# back to workspace 1
+exec --no-startup-id i3-msg 'workspace 1:  '
